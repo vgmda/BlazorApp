@@ -2,9 +2,9 @@
 
 <PageTitle>Task List</PageTitle>
 
-<h1>Task List</h1>
+<h3>@Name's Task List</h3>
 
-<p>This component demonstrates adding data to a list.</p>
+
 
 @if (taskList.Count > 0)
 {
@@ -51,6 +51,9 @@
 
     private List<TaskModel> taskList = new List<TaskModel>();
     private TaskModel newTask = new TaskModel();
+
+    [Parameter]
+    public string Name { get; set; }
 
     private int percentDone
     {
