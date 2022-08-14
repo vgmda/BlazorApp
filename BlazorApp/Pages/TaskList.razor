@@ -6,12 +6,22 @@
 
 <p>This component demonstrates adding data to a list.</p>
 
+@if (taskList.Count > 0)
+{
+    <div class="progress my-3">
+        <div class="progress-bar" role="progressbar"
+             style="width: @(percentDone)%"
+             aria-valuemin="0"
+             aria-valuemax="100">@(percentDone)%</div>
+    </div>
+}
+
 <EditForm class="row g-3" Model="@newTask" OnValidSubmit="AddTask">
     <div class="col-auto">
         <InputText class="form-control" @bind-Value="newTask.Task" />
     </div>
     <div class="col-auto">
-        <button class="btn btn-primary mb-3" type="submit">Add Task</button>
+        <button class="btn btn-outline-primary mb-3" type="submit">Add Task</button>
     </div>
 
 </EditForm>
@@ -19,7 +29,20 @@
 <ul class="list-group">
     @foreach (var task in taskList)
     {
-        <li class="list-group-item list-group-item-success my-1">@task.Task</li>
+        @if (task.IsComplete)
+        {
+            <li class="list-group-item list-group-item-secondary my-1"
+                @onclick="(()=>task.IsComplete = !task.IsComplete)">
+                <del>@task.Task</del>
+            </li>
+        }
+        else
+        {
+            <li class="list-group-item list-group-item-success my-1"
+                @onclick="(()=>task.IsComplete = !task.IsComplete)">
+                @task.Task
+            </li>
+        }
     }
 
 </ul>
@@ -28,6 +51,14 @@
 
     private List<TaskModel> taskList = new List<TaskModel>();
     private TaskModel newTask = new TaskModel();
+
+    private int percentDone
+    {
+        get
+        {
+            return (taskList.Count(x => x.IsComplete) * 100) / taskList.Count;
+        }
+    }
 
     private void AddTask()
     {
