@@ -2,7 +2,21 @@
 
 <h3>Task List</h3>
 
+<EditForm Model="@newTask" OnValidSubmit="AddTask">
+    <InputText @bind-Value="newTask.Task" />
+    <button type="submit">Add Task</button>
+
+</EditForm>
+
 @code {
 
+    private List<TaskModel> taskList = new List<TaskModel>();
+    private TaskModel newTask = new TaskModel();
+
+    private void AddTask()
+    {
+        taskList.Add(newTask);
+        newTask = new TaskModel();
+    }
 }
 
