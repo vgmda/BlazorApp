@@ -8,3 +8,16 @@
 <p align="center"><i>Blazor app with client-side execution
 </i></p>
 </p>
+
+
+## Blazor WebAssemby and Blazor Server
+ 
+In the *server-side hosting model (Blazor Server-Side)*, Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a SignalR connection.
+ 
+In the *client-side model (Blazor WebAssembly)*, the Blazor app, its dependencies, and the .NET runtime are downloaded to the browser, and the app is executed directly on the browser UI thread. All UI updates and event handling happen within the same process.
+
+<p align="center">
+  <img width="670" height="400" src="https://codewithmukesh.com/wp-content/uploads/2020/05/1blazor-1-1571602480344-1024x547.png?ezimgfmt=ng:webp/ngcb53">
+<p align="center"><i>Blazor Server vs Blazor WebAssembly
+</i></p>
+</p>
